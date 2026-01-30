@@ -34,12 +34,12 @@ export function Header() {
       >
         {/* Inner bar: this is what visually shrinks into a pill */}
         <div
-          className={`pointer-events-auto mx-auto transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          className={`pointer-events-auto transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] ${
             menuOpen
               ? 'rounded-none bg-card'
               : scrolled
-                ? 'max-w-3xl rounded-2xl border border-border/60 shadow-lg backdrop-blur-2xl backdrop-saturate-150'
-                : 'max-w-full rounded-none'
+                ? 'rounded-2xl border border-border/60 shadow-lg backdrop-blur-2xl backdrop-saturate-150'
+                : 'rounded-none border border-transparent'
           }`}
           style={
             !menuOpen && !scrolled

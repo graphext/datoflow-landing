@@ -116,20 +116,6 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* ── Social Proof ── */}
-        <section className="py-12">
-          <div className="mx-auto max-w-7xl px-6">
-            <AnimateOnScroll animation="fade-in">
-              <SectionLabel className="mb-8 text-center">[&nbsp;&nbsp;Trusted by&nbsp;&nbsp;]</SectionLabel>
-              <div className="flex flex-wrap items-center justify-center gap-x-14 gap-y-4 opacity-40">
-                {['Havas', 'LLYC', 'Atrevia', 'Apple Tree', 'Marco', 'Kreab'].map((company) => (
-                  <span key={company} className="text-lg font-semibold tracking-tight text-foreground">{company}</span>
-                ))}
-              </div>
-            </AnimateOnScroll>
-          </div>
-        </section>
-
         {/* ── Problem ── */}
         <section className="py-28">
           <div className="mx-auto max-w-7xl px-6">
@@ -156,12 +142,12 @@ export default function LandingPage() {
                   <h3 className="mb-6 text-xl font-semibold">Brandwatch, Sprinklr, Talkwalker...</h3>
                   <ul className="space-y-4">
                     {[
+                      'No access to TikTok, LinkedIn, or Instagram data',
+                      'Limited data sources, walled gardens',
                       '$30K–$100K/year subscriptions you barely use',
                       'Regex-based boolean queries to filter noise',
                       'Coarse sentiment (positive/negative/neutral)',
                       'Manual data cleaning and topic tagging',
-                      'Static dashboards that take weeks to set up',
-                      'Limited data sources, walled gardens',
                     ].map((item) => (
                       <li key={item} className="flex items-start gap-3 text-sm text-muted-foreground">
                         <span className="mt-0.5 text-destructive">✕</span>
@@ -178,12 +164,12 @@ export default function LandingPage() {
                   <h3 className="mb-6 text-xl font-semibold">AI-native, pay-per-use</h3>
                   <ul className="space-y-4">
                     {[
-                      'Pay only for what you use — credits, not contracts',
+                      'Twitter, Instagram, TikTok, LinkedIn, news — from everywhere',
+                      'Access to data sources competitors can\'t reach',
+                      'Pay only for what you use — 10x cheaper than legacy tools',
                       'AI semantic filtering removes irrelevant content',
                       'Fine-grained emotions, discourse, and narrative analysis',
                       'Auto-generated topics, subtopics, and taxonomies',
-                      'Prompt-driven reports matching your brand guidelines',
-                      'Twitter, Instagram, TikTok, news — from everywhere',
                     ].map((item) => (
                       <li key={item} className="flex items-start gap-3 text-sm">
                         <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
@@ -371,7 +357,114 @@ export default function LandingPage() {
               </div>
             </AnimateOnScroll>
 
-            {/* Feature 1 */}
+            {/* Feature 1 — Data Sources */}
+            <div className="mb-24 grid items-center gap-12 md:grid-cols-2">
+              <AnimateOnScroll animation="slide-left">
+                <div>
+                  <SectionLabel className="mb-4">[&nbsp;&nbsp;Data sources&nbsp;&nbsp;]</SectionLabel>
+                  <h3 className="mb-4 text-3xl font-medium tracking-[-0.025em]">
+                    Your data.
+                    <br />
+                    <span className="text-gradient-blue">From everywhere.</span>
+                  </h3>
+                  <p className="mb-6 text-muted-foreground">
+                    Collect from social platforms, import news from thousands of
+                    sources, or bring your own datasets. Combine multiple sources
+                    into a single analysis.
+                  </p>
+                  <ul className="space-y-3">
+                    {['Built-in collectors for all major social platforms', 'Import CSV, Excel, JSON, Parquet up to 50MB', 'URL-based import for external data', 'Combine multiple sources in a single project'].map((item) => (
+                      <li key={item} className="flex items-center gap-2 text-sm"><Check className="h-4 w-4 text-primary" />{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              </AnimateOnScroll>
+              <AnimateOnScroll animation="slide-right" delay={150}>
+                <CardClean>
+                  <div className="mb-4 text-xs font-medium text-muted-foreground">Data sources</div>
+                  <div className="grid grid-cols-2 gap-3">
+                    {[
+                      { icon: XIcon, name: 'X / Twitter', status: 'Connected', connected: true },
+                      { icon: InstagramIcon, name: 'Instagram', status: 'Soon', connected: false },
+                      { icon: TikTokIcon, name: 'TikTok', status: 'Soon', connected: false },
+                      { icon: GoogleNewsIcon, name: 'News & Media', status: 'Soon', connected: false },
+                      { icon: LinkedInIcon, name: 'LinkedIn', status: 'Soon', connected: false },
+                      { icon: YouTubeIcon, name: 'YouTube', status: 'Soon', connected: false },
+                    ].map((src) => (
+                      <div key={src.name} className="flex items-center gap-3 rounded-xl border bg-muted p-3">
+                        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-card"><src.icon className="h-4 w-4" /></div>
+                        <div><div className="text-[11px] font-medium">{src.name}</div><div className={`text-[9px] ${src.connected ? 'text-green-600' : 'text-muted-foreground'}`}>{src.status}</div></div>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="mt-3 flex items-center justify-center gap-3 text-muted-foreground/50">
+                    <RedditIcon className="h-3.5 w-3.5" /><FacebookIcon className="h-3.5 w-3.5" /><GoogleSearchIcon className="h-3.5 w-3.5" />
+                    <span className="text-[10px]">+many more coming</span>
+                  </div>
+                  <div className="mt-3 flex items-center gap-2 rounded-xl border border-dashed bg-muted p-3">
+                    <Upload className="h-4 w-4 text-muted-foreground" />
+                    <span className="text-xs text-muted-foreground">Or upload your own data — CSV, Excel, JSON, Parquet</span>
+                  </div>
+                </CardClean>
+              </AnimateOnScroll>
+            </div>
+
+            {/* Feature 2 — Topic Extraction */}
+            <div className="mb-24 grid items-center gap-12 md:grid-cols-2">
+              <AnimateOnScroll animation="slide-left" delay={100} className="order-2 md:order-1">
+                <CardClean>
+                  <div className="mb-4 text-xs font-medium text-muted-foreground">Extracted taxonomy</div>
+                  <div className="space-y-3">
+                    {[
+                      { topic: 'Product Quality', count: 4521, subtopics: ['Durability', 'Design', 'Features'], sentiment: 72 },
+                      { topic: 'Customer Service', count: 2834, subtopics: ['Response Time', 'Resolution', 'Tone'], sentiment: 45 },
+                      { topic: 'Sustainability', count: 1967, subtopics: ['Packaging', 'Supply Chain', 'Greenwashing'], sentiment: 58 },
+                      { topic: 'Pricing', count: 1455, subtopics: ['Value', 'Competitors', 'Discounts'], sentiment: 38 },
+                    ].map((topic) => (
+                      <div key={topic.topic} className="rounded-xl border bg-muted p-3">
+                        <div className="mb-2 flex items-center justify-between">
+                          <span className="text-xs font-semibold">{topic.topic}</span>
+                          <span className="text-[10px] text-muted-foreground">{topic.count.toLocaleString()} mentions</span>
+                        </div>
+                        <div className="mb-2 flex gap-1.5">
+                          {topic.subtopics.map((sub) => (
+                            <span key={sub} className="rounded-md bg-primary/10 px-1.5 py-0.5 text-[9px] font-medium text-primary">{sub}</span>
+                          ))}
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <div className="h-1.5 flex-1 rounded-full bg-border">
+                            <div className="h-full rounded-full bg-primary/50" style={{ width: `${topic.sentiment}%` }} />
+                          </div>
+                          <span className="text-[9px] text-muted-foreground">{topic.sentiment}% positive</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </CardClean>
+              </AnimateOnScroll>
+              <AnimateOnScroll animation="slide-right" className="order-1 md:order-2">
+                <div>
+                  <SectionLabel className="mb-4">[&nbsp;&nbsp;Topic extraction&nbsp;&nbsp;]</SectionLabel>
+                  <h3 className="mb-4 text-3xl font-medium tracking-[-0.025em]">
+                    Clean topics.
+                    <br />
+                    <span className="text-gradient-blue">Not word clouds.</span>
+                  </h3>
+                  <p className="mb-6 text-muted-foreground">
+                    Forget noisy word clouds. Datoflow generates clean,
+                    hierarchical topic taxonomies with subtopics — refined by AI
+                    to match what a human analyst would produce, but in seconds.
+                  </p>
+                  <ul className="space-y-3">
+                    {['Hierarchical topics → subtopics → taxonomy', 'AI-refined for quality and coherence', 'Multi-label classification per document', 'Customizable to your domain and terminology'].map((item) => (
+                      <li key={item} className="flex items-center gap-2 text-sm"><Check className="h-4 w-4 text-primary" />{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              </AnimateOnScroll>
+            </div>
+
+            {/* Feature 3 — Semantic Filtering */}
             <div className="mb-24 grid items-center gap-12 md:grid-cols-2">
               <AnimateOnScroll animation="slide-left">
                 <div>
@@ -418,8 +511,8 @@ export default function LandingPage() {
               </AnimateOnScroll>
             </div>
 
-            {/* Feature 2 */}
-            <div className="mb-24 grid items-center gap-12 md:grid-cols-2">
+            {/* Feature 4 — Linguistic Analysis */}
+            <div className="grid items-center gap-12 md:grid-cols-2">
               <AnimateOnScroll animation="slide-left" delay={100} className="order-2 md:order-1">
                 <CardClean>
                   <div className="mb-4 text-xs font-medium text-muted-foreground">Linguistic analysis output</div>
@@ -471,113 +564,6 @@ export default function LandingPage() {
                   </p>
                   <ul className="space-y-3">
                     {['8 Plutchik emotions + intensity levels', 'Discourse and narrative analysis', 'Rhetorical strategy detection', 'Cross-cultural linguistic awareness'].map((item) => (
-                      <li key={item} className="flex items-center gap-2 text-sm"><Check className="h-4 w-4 text-primary" />{item}</li>
-                    ))}
-                  </ul>
-                </div>
-              </AnimateOnScroll>
-            </div>
-
-            {/* Feature 3 */}
-            <div className="mb-24 grid items-center gap-12 md:grid-cols-2">
-              <AnimateOnScroll animation="slide-left">
-                <div>
-                  <SectionLabel className="mb-4">[&nbsp;&nbsp;Topic extraction&nbsp;&nbsp;]</SectionLabel>
-                  <h3 className="mb-4 text-3xl font-medium tracking-[-0.025em]">
-                    Clean topics.
-                    <br />
-                    <span className="text-gradient-blue">Not word clouds.</span>
-                  </h3>
-                  <p className="mb-6 text-muted-foreground">
-                    Forget noisy word clouds. Datoflow generates clean,
-                    hierarchical topic taxonomies with subtopics — refined by AI
-                    to match what a human analyst would produce, but in seconds.
-                  </p>
-                  <ul className="space-y-3">
-                    {['Hierarchical topics → subtopics → taxonomy', 'AI-refined for quality and coherence', 'Multi-label classification per document', 'Customizable to your domain and terminology'].map((item) => (
-                      <li key={item} className="flex items-center gap-2 text-sm"><Check className="h-4 w-4 text-primary" />{item}</li>
-                    ))}
-                  </ul>
-                </div>
-              </AnimateOnScroll>
-              <AnimateOnScroll animation="slide-right" delay={150}>
-                <CardClean>
-                  <div className="mb-4 text-xs font-medium text-muted-foreground">Extracted taxonomy</div>
-                  <div className="space-y-3">
-                    {[
-                      { topic: 'Product Quality', count: 4521, subtopics: ['Durability', 'Design', 'Features'], sentiment: 72 },
-                      { topic: 'Customer Service', count: 2834, subtopics: ['Response Time', 'Resolution', 'Tone'], sentiment: 45 },
-                      { topic: 'Sustainability', count: 1967, subtopics: ['Packaging', 'Supply Chain', 'Greenwashing'], sentiment: 58 },
-                      { topic: 'Pricing', count: 1455, subtopics: ['Value', 'Competitors', 'Discounts'], sentiment: 38 },
-                    ].map((topic) => (
-                      <div key={topic.topic} className="rounded-xl border bg-muted p-3">
-                        <div className="mb-2 flex items-center justify-between">
-                          <span className="text-xs font-semibold">{topic.topic}</span>
-                          <span className="text-[10px] text-muted-foreground">{topic.count.toLocaleString()} mentions</span>
-                        </div>
-                        <div className="mb-2 flex gap-1.5">
-                          {topic.subtopics.map((sub) => (
-                            <span key={sub} className="rounded-md bg-primary/10 px-1.5 py-0.5 text-[9px] font-medium text-primary">{sub}</span>
-                          ))}
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <div className="h-1.5 flex-1 rounded-full bg-border">
-                            <div className="h-full rounded-full bg-primary/50" style={{ width: `${topic.sentiment}%` }} />
-                          </div>
-                          <span className="text-[9px] text-muted-foreground">{topic.sentiment}% positive</span>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </CardClean>
-              </AnimateOnScroll>
-            </div>
-
-            {/* Feature 4 */}
-            <div className="grid items-center gap-12 md:grid-cols-2">
-              <AnimateOnScroll animation="slide-left" delay={100} className="order-2 md:order-1">
-                <CardClean>
-                  <div className="mb-4 text-xs font-medium text-muted-foreground">Data sources</div>
-                  <div className="grid grid-cols-2 gap-3">
-                    {[
-                      { icon: XIcon, name: 'X / Twitter', status: 'Connected', connected: true },
-                      { icon: InstagramIcon, name: 'Instagram', status: 'Soon', connected: false },
-                      { icon: TikTokIcon, name: 'TikTok', status: 'Soon', connected: false },
-                      { icon: GoogleNewsIcon, name: 'News & Media', status: 'Soon', connected: false },
-                      { icon: LinkedInIcon, name: 'LinkedIn', status: 'Soon', connected: false },
-                      { icon: YouTubeIcon, name: 'YouTube', status: 'Soon', connected: false },
-                    ].map((src) => (
-                      <div key={src.name} className="flex items-center gap-3 rounded-xl border bg-muted p-3">
-                        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-card"><src.icon className="h-4 w-4" /></div>
-                        <div><div className="text-[11px] font-medium">{src.name}</div><div className={`text-[9px] ${src.connected ? 'text-green-600' : 'text-muted-foreground'}`}>{src.status}</div></div>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="mt-3 flex items-center justify-center gap-3 text-muted-foreground/50">
-                    <RedditIcon className="h-3.5 w-3.5" /><FacebookIcon className="h-3.5 w-3.5" /><GoogleSearchIcon className="h-3.5 w-3.5" />
-                    <span className="text-[10px]">+many more coming</span>
-                  </div>
-                  <div className="mt-3 flex items-center gap-2 rounded-xl border border-dashed bg-muted p-3">
-                    <Upload className="h-4 w-4 text-muted-foreground" />
-                    <span className="text-xs text-muted-foreground">Or upload your own data — CSV, Excel, JSON, Parquet</span>
-                  </div>
-                </CardClean>
-              </AnimateOnScroll>
-              <AnimateOnScroll animation="slide-right" className="order-1 md:order-2">
-                <div>
-                  <SectionLabel className="mb-4">[&nbsp;&nbsp;Data sources&nbsp;&nbsp;]</SectionLabel>
-                  <h3 className="mb-4 text-3xl font-medium tracking-[-0.025em]">
-                    Your data.
-                    <br />
-                    <span className="text-gradient-blue">From everywhere.</span>
-                  </h3>
-                  <p className="mb-6 text-muted-foreground">
-                    Collect from social platforms, import news from thousands of
-                    sources, or bring your own datasets. Combine multiple sources
-                    into a single analysis.
-                  </p>
-                  <ul className="space-y-3">
-                    {['Built-in collectors for all major social platforms', 'Import CSV, Excel, JSON, Parquet up to 50MB', 'URL-based import for external data', 'Combine multiple sources in a single project'].map((item) => (
                       <li key={item} className="flex items-center gap-2 text-sm"><Check className="h-4 w-4 text-primary" />{item}</li>
                     ))}
                   </ul>
@@ -666,11 +652,20 @@ export default function LandingPage() {
             <div className="mx-auto grid max-w-4xl gap-8 md:grid-cols-3">
               <AnimateOnScroll animation="fade-up" delay={0}>
                 <CardClean className="opacity-60">
-                  <SectionLabel className="mb-4 text-destructive">[&nbsp;&nbsp;Legacy pricing&nbsp;&nbsp;]</SectionLabel>
+                  <SectionLabel className="mb-4 text-destructive">[&nbsp;&nbsp;Competitors&nbsp;&nbsp;]</SectionLabel>
+                  <div className="mb-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-[10px] font-semibold tracking-wide text-muted-foreground">
+                    <span>Brandwatch</span>
+                    <span className="text-border">·</span>
+                    <span>Sprinklr</span>
+                    <span className="text-border">·</span>
+                    <span>Talkwalker</span>
+                    <span className="text-border">·</span>
+                    <span>Meltwater</span>
+                  </div>
                   <div className="mb-2 text-3xl font-medium">$2,500</div>
                   <div className="mb-6 text-sm text-muted-foreground">/month, annual contract</div>
                   <ul className="space-y-2">
-                    {['1 user seat included', 'Extra seats $500/mo each', 'Limited data volume', 'Hidden overage fees', 'Opaque pricing tiers'].map((item) => (
+                    {['1 user seat included', 'Extra seats $500/mo each', 'Limited data volume', 'Hidden overage fees', 'Opaque pricing tiers', 'Under-use AI to protect their margins'].map((item) => (
                       <li key={item} className="flex items-center gap-2 text-xs text-muted-foreground"><span className="text-destructive">✕</span>{item}</li>
                     ))}
                   </ul>
