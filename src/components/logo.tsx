@@ -8,23 +8,23 @@ interface LogoProps {
 }
 
 const sizeClasses = {
-  sm: 'text-lg',
-  md: 'text-xl',
-  lg: 'text-2xl',
-  xl: 'text-3xl',
+  sm: 'text-xl',
+  md: 'text-2xl',
+  lg: 'text-3xl',
+  xl: 'text-4xl',
 };
 
 const iconSizes = {
-  sm: 20,
-  md: 24,
-  lg: 28,
-  xl: 32,
+  sm: 24,
+  md: 28,
+  lg: 32,
+  xl: 38,
 };
 
 export function Logo({ href = '/', className = '', size = 'md' }: LogoProps) {
   const logoContent = (
     <span
-      className={`inline-flex items-center gap-1.5 ${sizeClasses[size]} ${className}`}
+      className={`inline-flex items-center gap-1.5 transition-all duration-300 ${sizeClasses[size]} ${className}`}
       style={{ fontFamily: '"LINE Seed JP", sans-serif', fontWeight: 700 }}
     >
       <Image

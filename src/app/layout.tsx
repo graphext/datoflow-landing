@@ -1,23 +1,24 @@
 import type { Metadata } from 'next';
-import { Inter, DM_Mono } from 'next/font/google';
+import { Geist, Geist_Mono } from 'next/font/google';
+import { Agentation } from 'agentation';
+import { LenisProvider } from '@/components/lenis-provider';
 import './globals.css';
 
-const inter = Inter({
-  variable: '--font-inter',
+const geistSans = Geist({
+  variable: '--font-geist-sans',
   subsets: ['latin'],
   display: 'swap',
 });
 
-const dmMono = DM_Mono({
-  variable: '--font-mono',
-  weight: ['400', '500'],
+const geistMono = Geist_Mono({
+  variable: '--font-geist-mono',
   subsets: ['latin'],
   display: 'swap',
 });
 
 export const metadata: Metadata = {
   title: {
-    default: 'Datoflow — AI-native PR & market research intelligence',
+    default: 'Datoflow — Social Listening & PR for the AI era',
     template: '%s | Datoflow',
   },
   description:
@@ -33,8 +34,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${dmMono.variable}`}>
-      <body className="font-sans antialiased">{children}</body>
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`} suppressHydrationWarning>
+      <body className="font-sans antialiased">
+        <LenisProvider>
+          {children}
+        </LenisProvider>
+        {process.env.NODE_ENV === 'development' && <Agentation />}
+      </body>
     </html>
   );
 }
