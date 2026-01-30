@@ -1,17 +1,16 @@
 import Link from 'next/link';
 import { Logo } from '@/components/logo';
+import { Header } from '@/components/header';
 import {
   ArrowRight,
   BarChart3,
   Brain,
   Check,
-  CreditCard,
   Database,
   Eye,
   Filter,
   Globe,
   MessageSquare,
-  Newspaper,
   Search,
   Sparkles,
   Upload,
@@ -31,131 +30,97 @@ import {
 
 const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://app.datoflow.com';
 
+function SectionLabel({ children, className = '' }: { children: React.ReactNode; className?: string }) {
+  return (
+    <div className={`font-mono text-xs font-medium uppercase tracking-[0.15em] text-muted-foreground ${className}`}>
+      {children}
+    </div>
+  );
+}
+
+function BtnPill({ href, children, className = '' }: { href?: string; children: React.ReactNode; className?: string }) {
+  const cls = `inline-flex items-center gap-2 rounded-full bg-foreground px-8 py-3 text-[15px] font-medium text-white transition-all hover:opacity-90 hover:-translate-y-px ${className}`;
+  if (href) return <a href={href} className={cls}>{children}</a>;
+  return <button className={cls}>{children}</button>;
+}
+
+function BtnPillOutline({ href, children, className = '' }: { href?: string; children: React.ReactNode; className?: string }) {
+  const cls = `inline-flex items-center gap-2 rounded-full border border-border bg-transparent px-8 py-3 text-[15px] font-medium text-foreground transition-all hover:bg-muted hover:border-muted-foreground ${className}`;
+  if (href) return <a href={href} className={cls}>{children}</a>;
+  return <button className={cls}>{children}</button>;
+}
+
+function CardClean({ children, className = '' }: { children: React.ReactNode; className?: string }) {
+  return (
+    <div className={`rounded-2xl border border-border bg-card p-8 ${className}`}>
+      {children}
+    </div>
+  );
+}
+
 export default function LandingPage() {
   return (
-    <div className="flex min-h-screen flex-col bg-background">
-      {/* Header */}
-      <header className="sticky top-0 z-50 border-b bg-background/80 backdrop-blur-sm">
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
-          <Logo href="/" size="md" />
-          <nav className="hidden items-center gap-8 text-sm md:flex">
-            <a href="#features" className="text-muted-foreground transition-colors hover:text-foreground">
-              Features
-            </a>
-            <a href="#how-it-works" className="text-muted-foreground transition-colors hover:text-foreground">
-              How It Works
-            </a>
-            <a href="#pricing" className="text-muted-foreground transition-colors hover:text-foreground">
-              Pricing
-            </a>
-          </nav>
-          <div className="flex items-center gap-3">
-            <a
-              href={`${appUrl}/login`}
-              className="rounded-md px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
-            >
-              Log in
-            </a>
-            <a
-              href={`${appUrl}/login`}
-              className="inline-flex items-center gap-1 rounded-md bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
-            >
-              Get Started
-              <ArrowRight className="h-3.5 w-3.5" />
-            </a>
-          </div>
-        </div>
-      </header>
+    <div className="flex min-h-screen flex-col bg-[#f0f4ff]">
+      <Header />
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative overflow-hidden">
-          <div className="mx-auto max-w-7xl px-6 pb-20 pt-20 md:pt-28">
+        <section
+          className="relative overflow-hidden"
+          style={{ background: 'linear-gradient(180deg, #f0f4ff 0%, #e8eeff 30%, #dde5f9 60%, #ffffff 100%)' }}
+        >
+          <div className="mx-auto max-w-7xl px-4 pb-20 pt-28 sm:px-6 md:pb-28 md:pt-40">
             <div className="mx-auto max-w-4xl text-center">
-              <div className="mb-6 inline-flex items-center gap-2 rounded-full border bg-muted/50 px-4 py-1.5 text-sm text-muted-foreground">
-                <Sparkles className="h-3.5 w-3.5" />
-                PR &amp; Market Research intelligence
-              </div>
-              <h1
-                className="mb-6 text-5xl leading-tight tracking-tight md:text-7xl md:leading-tight"
-                style={{ fontFamily: 'var(--font-serif), serif' }}
-              >
-                PR &amp; market research data
+              <SectionLabel className="mb-4 md:mb-6">[&nbsp;&nbsp;Intelligence&nbsp;&nbsp;]</SectionLabel>
+              <h1 className="mb-5 text-4xl font-bold leading-[1.15] tracking-tight sm:text-5xl md:mb-6 md:text-7xl md:leading-[1.1]">
+                PR &amp; Market Research Data
                 <br />
                 nobody else can get you
               </h1>
-              <p className="mx-auto mb-8 max-w-2xl text-lg text-muted-foreground md:text-xl">
+              <p className="mx-auto mb-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg md:mb-8 md:text-xl">
                 Social media and news intelligence for PR and research teams.
                 AI scrapes, cleans, and analyzes — you only pay for what you use.
-                Transparent pricing. No surprises.
               </p>
 
               {/* Platform logos strip */}
-              <div className="mx-auto mb-4 flex max-w-lg items-center justify-center gap-4 text-muted-foreground">
-                <XIcon className="h-5 w-5" />
-                <InstagramIcon className="h-5 w-5" />
-                <TikTokIcon className="h-5 w-5" />
-                <LinkedInIcon className="h-5 w-5" />
-                <YouTubeIcon className="h-5 w-5" />
-                <GoogleNewsIcon className="h-5 w-5" />
-                <RedditIcon className="h-5 w-5" />
-                <FacebookIcon className="h-5 w-5" />
-                <span className="text-sm text-muted-foreground">+more</span>
+              <div className="mx-auto mb-3 flex max-w-lg items-center justify-center gap-3 text-muted-foreground/60 sm:gap-5">
+                <XIcon className="h-4 w-4 sm:h-5 sm:w-5" />
+                <InstagramIcon className="h-4 w-4 sm:h-5 sm:w-5" />
+                <TikTokIcon className="h-4 w-4 sm:h-5 sm:w-5" />
+                <LinkedInIcon className="h-4 w-4 sm:h-5 sm:w-5" />
+                <YouTubeIcon className="h-4 w-4 sm:h-5 sm:w-5" />
+                <GoogleNewsIcon className="h-4 w-4 sm:h-5 sm:w-5" />
+                <RedditIcon className="h-4 w-4 sm:h-5 sm:w-5" />
+                <FacebookIcon className="h-4 w-4 sm:h-5 sm:w-5" />
+                <span className="text-xs text-muted-foreground/60 sm:text-sm">+more</span>
               </div>
-              <p className="mx-auto mb-10 text-xs text-muted-foreground">
+              <p className="mx-auto mb-8 text-xs text-muted-foreground md:mb-12">
                 All major social platforms and thousands of news sources
               </p>
 
-              {/* Value props row */}
-              <div className="mx-auto mb-10 flex max-w-2xl flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
-                <span className="flex items-center gap-1.5">
-                  <Eye className="h-3.5 w-3.5 text-primary" />
-                  Transparent pay-per-use pricing
-                </span>
-                <span className="hidden text-border sm:inline">|</span>
-                <span className="flex items-center gap-1.5">
-                  <Newspaper className="h-3.5 w-3.5 text-primary" />
-                  Social + news in one place
-                </span>
-                <span className="hidden text-border sm:inline">|</span>
-                <span className="flex items-center gap-1.5">
-                  <Zap className="h-3.5 w-3.5 text-primary" />
-                  Results in minutes
-                </span>
-              </div>
-
-              <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-                <a
-                  href={`${appUrl}/login`}
-                  className="inline-flex h-12 items-center gap-2 rounded-md bg-primary px-8 text-base font-medium text-primary-foreground transition-opacity hover:opacity-90"
-                >
-                  Start analyzing
+              <div className="flex items-center justify-center gap-3 sm:gap-4">
+                <BtnPill href={`${appUrl}/login`}>
+                  Start for Free
                   <ArrowRight className="h-4 w-4" />
-                </a>
-                <button className="inline-flex h-12 items-center gap-2 rounded-md border px-8 text-base font-medium transition-colors hover:bg-muted">
-                  See it in action
-                </button>
+                </BtnPill>
+                <BtnPillOutline>
+                  Get a demo
+                </BtnPillOutline>
               </div>
             </div>
-          </div>
-          {/* Decorative gradient */}
-          <div className="pointer-events-none absolute inset-0 -z-10">
-            <div className="absolute left-1/2 top-0 h-[600px] w-[800px] -translate-x-1/2 rounded-full bg-primary/5 blur-3xl" />
           </div>
         </section>
 
         {/* Social Proof */}
-        <section className="border-y bg-muted/30 py-10">
+        <section className="bg-muted py-12">
           <div className="mx-auto max-w-7xl px-6">
-            <p className="mb-6 text-center text-sm font-medium uppercase tracking-wider text-muted-foreground">
-              Trusted by PR agencies and research teams
-            </p>
-            <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-4 opacity-50">
+            <SectionLabel className="mb-8 text-center">[&nbsp;&nbsp;Trusted by&nbsp;&nbsp;]</SectionLabel>
+            <div className="flex flex-wrap items-center justify-center gap-x-14 gap-y-4 opacity-40">
               {['Havas', 'LLYC', 'Atrevia', 'Apple Tree', 'Marco', 'Kreab'].map(
                 (company) => (
                   <span
                     key={company}
-                    className="text-lg font-semibold tracking-tight text-muted-foreground"
+                    className="text-lg font-semibold tracking-tight text-foreground"
                   >
                     {company}
                   </span>
@@ -166,29 +131,25 @@ export default function LandingPage() {
         </section>
 
         {/* The Shift: Old Game vs New Game */}
-        <section className="py-24">
+        <section className="py-28">
           <div className="mx-auto max-w-7xl px-6">
             <div className="mx-auto mb-16 max-w-3xl text-center">
-              <h2
-                className="mb-4 text-4xl tracking-tight md:text-5xl"
-                style={{ fontFamily: 'var(--font-serif), serif' }}
-              >
+              <SectionLabel className="mb-4">[&nbsp;&nbsp;Problem&nbsp;&nbsp;]</SectionLabel>
+              <h2 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
                 Social listening was built
                 <br />
                 for a different era
               </h2>
-              <p className="text-lg text-muted-foreground">
+              <p className="text-lg leading-relaxed text-muted-foreground">
                 Legacy tools charge enterprise prices for regex filters and
                 rigid dashboards. You deserve AI-native intelligence at a
                 fraction of the cost.
               </p>
             </div>
 
-            <div className="grid gap-6 md:grid-cols-2">
-              <div className="rounded-2xl border border-destructive/20 bg-destructive/5 p-8">
-                <div className="mb-4 text-sm font-semibold uppercase tracking-wider text-destructive">
-                  The old way
-                </div>
+            <div className="grid gap-8 md:grid-cols-2">
+              <CardClean>
+                <SectionLabel className="mb-4 text-destructive">[&nbsp;&nbsp;Old way&nbsp;&nbsp;]</SectionLabel>
                 <h3 className="mb-6 text-xl font-semibold">Brandwatch, Sprinklr, Talkwalker...</h3>
                 <ul className="space-y-4">
                   {[
@@ -205,12 +166,10 @@ export default function LandingPage() {
                     </li>
                   ))}
                 </ul>
-              </div>
+              </CardClean>
 
-              <div className="rounded-2xl border border-primary/20 bg-primary/5 p-8">
-                <div className="mb-4 text-sm font-semibold uppercase tracking-wider text-primary">
-                  The Datoflow way
-                </div>
+              <CardClean>
+                <SectionLabel className="mb-4">[&nbsp;&nbsp;Solution&nbsp;&nbsp;]</SectionLabel>
                 <h3 className="mb-6 text-xl font-semibold">AI-native, pay-per-use</h3>
                 <ul className="space-y-4">
                   {[
@@ -222,29 +181,27 @@ export default function LandingPage() {
                     'Twitter, Instagram, TikTok, news — from everywhere',
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-3 text-sm">
-                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-foreground" />
                       {item}
                     </li>
                   ))}
                 </ul>
-              </div>
+              </CardClean>
             </div>
           </div>
         </section>
 
         {/* How It Works */}
-        <section id="how-it-works" className="border-y bg-muted/30 py-24">
+        <section id="how-it-works" className="bg-muted py-28">
           <div className="mx-auto max-w-7xl px-6">
             <div className="mx-auto mb-16 max-w-3xl text-center">
-              <h2
-                className="mb-4 text-4xl tracking-tight md:text-5xl"
-                style={{ fontFamily: 'var(--font-serif), serif' }}
-              >
+              <SectionLabel className="mb-4">[&nbsp;&nbsp;How it works&nbsp;&nbsp;]</SectionLabel>
+              <h2 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
                 From raw data to
                 <br />
                 actionable insights
               </h2>
-              <p className="text-lg text-muted-foreground">
+              <p className="text-lg leading-relaxed text-muted-foreground">
                 Three steps. No training needed. Start getting results in
                 minutes, not weeks.
               </p>
@@ -254,7 +211,7 @@ export default function LandingPage() {
               {['Gather', 'Enrich', 'Report'].map((step, i) => (
                 <div key={step} className="flex items-center gap-4">
                   <div className="flex items-center gap-2">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-sm font-medium text-primary-foreground">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-foreground text-sm font-medium text-white">
                       {i + 1}
                     </div>
                     <span className="text-sm font-medium">{step}</span>
@@ -264,12 +221,12 @@ export default function LandingPage() {
               ))}
             </div>
 
-            <div className="grid gap-6 md:grid-cols-3">
+            <div className="grid gap-8 md:grid-cols-3">
               {/* Step 1: Gather */}
-              <div className="group rounded-2xl border bg-card p-6 transition-shadow hover:shadow-lg">
+              <CardClean>
                 <div className="mb-4 flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10">
-                    <Search className="h-5 w-5 text-primary" />
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-muted">
+                    <Search className="h-5 w-5 text-foreground" />
                   </div>
                   <h3 className="text-lg font-semibold">Gather</h3>
                 </div>
@@ -278,41 +235,41 @@ export default function LandingPage() {
                   news sources. Or upload your own datasets — CSV, Excel, JSON,
                   Parquet.
                 </p>
-                <div className="rounded-xl border bg-muted/50 p-4">
+                <div className="rounded-xl border bg-muted p-4">
                   <div className="mb-3 flex items-center gap-2 text-xs text-muted-foreground">
                     <Globe className="h-3.5 w-3.5" />
                     Connected sources
                   </div>
                   <div className="space-y-2">
-                    <div className="flex items-center justify-between rounded-lg border bg-background px-3 py-2">
+                    <div className="flex items-center justify-between rounded-lg border bg-white px-3 py-2">
                       <div className="flex items-center gap-2">
                         <XIcon className="h-3.5 w-3.5" />
                         <span className="text-xs font-medium">X / Twitter</span>
                       </div>
-                      <span className="text-xs text-green-500">24,891 posts</span>
+                      <span className="text-xs text-green-600">24,891 posts</span>
                     </div>
-                    <div className="flex items-center justify-between rounded-lg border bg-background px-3 py-2">
+                    <div className="flex items-center justify-between rounded-lg border bg-white px-3 py-2">
                       <div className="flex items-center gap-2">
                         <InstagramIcon className="h-3.5 w-3.5" />
                         <span className="text-xs font-medium">Instagram</span>
                       </div>
                       <span className="text-xs text-muted-foreground">Soon</span>
                     </div>
-                    <div className="flex items-center justify-between rounded-lg border bg-background px-3 py-2">
+                    <div className="flex items-center justify-between rounded-lg border bg-white px-3 py-2">
                       <div className="flex items-center gap-2">
                         <TikTokIcon className="h-3.5 w-3.5" />
                         <span className="text-xs font-medium">TikTok</span>
                       </div>
                       <span className="text-xs text-muted-foreground">Soon</span>
                     </div>
-                    <div className="flex items-center justify-between rounded-lg border bg-background px-3 py-2">
+                    <div className="flex items-center justify-between rounded-lg border bg-white px-3 py-2">
                       <div className="flex items-center gap-2">
                         <GoogleNewsIcon className="h-3.5 w-3.5" />
                         <span className="text-xs font-medium">News &amp; Media</span>
                       </div>
                       <span className="text-xs text-muted-foreground">Soon</span>
                     </div>
-                    <div className="flex items-center justify-between rounded-lg border border-dashed bg-background/50 px-3 py-2">
+                    <div className="flex items-center justify-between rounded-lg border border-dashed bg-white/50 px-3 py-2">
                       <div className="flex items-center gap-3 text-muted-foreground">
                         <LinkedInIcon className="h-3 w-3" />
                         <YouTubeIcon className="h-3 w-3" />
@@ -323,13 +280,13 @@ export default function LandingPage() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </CardClean>
 
               {/* Step 2: Enrich */}
-              <div className="group rounded-2xl border bg-card p-6 transition-shadow hover:shadow-lg">
+              <CardClean>
                 <div className="mb-4 flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10">
-                    <Brain className="h-5 w-5 text-primary" />
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-muted">
+                    <Brain className="h-5 w-5 text-foreground" />
                   </div>
                   <h3 className="text-lg font-semibold">Enrich</h3>
                 </div>
@@ -338,7 +295,7 @@ export default function LandingPage() {
                   Extracts topics, subtopics, sentiment, emotions, and
                   narrative structure automatically.
                 </p>
-                <div className="rounded-xl border bg-muted/50 p-4">
+                <div className="rounded-xl border bg-muted p-4">
                   <div className="mb-3 text-xs text-muted-foreground">AI enrichment pipeline</div>
                   <div className="space-y-2">
                     {[
@@ -349,13 +306,13 @@ export default function LandingPage() {
                     ].map((step) => (
                       <div
                         key={step.label}
-                        className="flex items-center justify-between rounded-lg border bg-background px-3 py-2"
+                        className="flex items-center justify-between rounded-lg border bg-white px-3 py-2"
                       >
                         <div className="flex items-center gap-2">
                           {step.status === 'done' ? (
-                            <Check className="h-3.5 w-3.5 text-green-500" />
+                            <Check className="h-3.5 w-3.5 text-green-600" />
                           ) : (
-                            <div className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+                            <div className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-foreground border-t-transparent" />
                           )}
                           <span className="text-xs font-medium">{step.label}</span>
                         </div>
@@ -366,13 +323,13 @@ export default function LandingPage() {
                     ))}
                   </div>
                 </div>
-              </div>
+              </CardClean>
 
               {/* Step 3: Report */}
-              <div className="group rounded-2xl border bg-card p-6 transition-shadow hover:shadow-lg">
+              <CardClean>
                 <div className="mb-4 flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10">
-                    <BarChart3 className="h-5 w-5 text-primary" />
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-muted">
+                    <BarChart3 className="h-5 w-5 text-foreground" />
                   </div>
                   <h3 className="text-lg font-semibold">Report</h3>
                 </div>
@@ -381,21 +338,21 @@ export default function LandingPage() {
                   your brand colors and style. Export to share with clients and
                   stakeholders.
                 </p>
-                <div className="rounded-xl border bg-muted/50 p-4">
+                <div className="rounded-xl border bg-muted p-4">
                   <div className="mb-3 text-xs text-muted-foreground">Report builder</div>
-                  <div className="mb-3 flex items-center gap-2 rounded-lg border bg-background px-3 py-2">
+                  <div className="mb-3 flex items-center gap-2 rounded-lg border bg-white px-3 py-2">
                     <MessageSquare className="h-3.5 w-3.5 text-muted-foreground" />
                     <span className="text-xs text-muted-foreground">
                       &quot;Show sentiment evolution by topic with brand colors&quot;
                     </span>
                   </div>
-                  <div className="rounded-lg border bg-background p-3">
+                  <div className="rounded-lg border bg-white p-3">
                     <div className="mb-2 text-[10px] font-medium">Sentiment by Topic</div>
                     <div className="flex items-end gap-1">
                       {[40, 65, 35, 80, 55, 70, 45, 60, 75, 50, 85, 65].map((h, i) => (
                         <div
                           key={i}
-                          className="flex-1 rounded-sm bg-primary/60 transition-all"
+                          className="flex-1 rounded-sm bg-foreground/40 transition-all"
                           style={{ height: `${h * 0.5}px` }}
                         />
                       ))}
@@ -407,37 +364,32 @@ export default function LandingPage() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </CardClean>
             </div>
           </div>
         </section>
 
         {/* Feature Deep Dive */}
-        <section id="features" className="py-24">
+        <section id="features" className="py-28">
           <div className="mx-auto max-w-7xl px-6">
             <div className="mx-auto mb-20 max-w-3xl text-center">
-              <h2
-                className="mb-4 text-4xl tracking-tight md:text-5xl"
-                style={{ fontFamily: 'var(--font-serif), serif' }}
-              >
+              <SectionLabel className="mb-4">[&nbsp;&nbsp;Features&nbsp;&nbsp;]</SectionLabel>
+              <h2 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
                 Intelligence that goes
                 <br />
                 deeper than keywords
               </h2>
-              <p className="text-lg text-muted-foreground">
+              <p className="text-lg leading-relaxed text-muted-foreground">
                 Beyond basic sentiment. Understand the narratives, emotions,
                 and discourse shaping public opinion.
               </p>
             </div>
 
             {/* Feature 1: Semantic Filtering */}
-            <div className="mb-20 grid items-center gap-12 md:grid-cols-2">
+            <div className="mb-24 grid items-center gap-12 md:grid-cols-2">
               <div>
-                <div className="mb-3 inline-flex items-center gap-2 rounded-full border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground">
-                  <Filter className="h-3 w-3" />
-                  AI Semantic Filtering
-                </div>
-                <h3 className="mb-4 text-3xl tracking-tight" style={{ fontFamily: 'var(--font-serif), serif' }}>
+                <SectionLabel className="mb-4">[&nbsp;&nbsp;Semantic filtering&nbsp;&nbsp;]</SectionLabel>
+                <h3 className="mb-4 text-3xl font-bold tracking-tight">
                   No more regex.
                   <br />
                   AI understands context.
@@ -455,34 +407,34 @@ export default function LandingPage() {
                     'Works across languages without translation',
                   ].map((item) => (
                     <li key={item} className="flex items-center gap-2 text-sm">
-                      <Check className="h-4 w-4 text-primary" />
+                      <Check className="h-4 w-4 text-foreground" />
                       {item}
                     </li>
                   ))}
                 </ul>
               </div>
-              <div className="rounded-2xl border bg-card p-6">
+              <CardClean>
                 <div className="mb-4 text-xs font-medium text-muted-foreground">Semantic filtering results</div>
                 <div className="space-y-3">
-                  <div className="rounded-xl border-l-2 border-l-green-500 bg-green-500/5 p-3">
+                  <div className="rounded-xl border-l-2 border-l-green-600 bg-muted p-3">
                     <div className="mb-1 flex items-center gap-2">
-                      <Check className="h-3 w-3 text-green-500" />
-                      <span className="text-[10px] font-semibold text-green-600">RELEVANT</span>
+                      <Check className="h-3 w-3 text-green-600" />
+                      <span className="text-[10px] font-semibold text-green-700">RELEVANT</span>
                     </div>
                     <p className="text-xs text-muted-foreground">
                       &quot;The new sustainability report from @BrandX shows a 40% reduction in emissions...&quot;
                     </p>
                   </div>
-                  <div className="rounded-xl border-l-2 border-l-green-500 bg-green-500/5 p-3">
+                  <div className="rounded-xl border-l-2 border-l-green-600 bg-muted p-3">
                     <div className="mb-1 flex items-center gap-2">
-                      <Check className="h-3 w-3 text-green-500" />
-                      <span className="text-[10px] font-semibold text-green-600">RELEVANT</span>
+                      <Check className="h-3 w-3 text-green-600" />
+                      <span className="text-[10px] font-semibold text-green-700">RELEVANT</span>
                     </div>
                     <p className="text-xs text-muted-foreground">
                       &quot;Critics question the greenwashing claims in BrandX&apos;s latest campaign...&quot;
                     </p>
                   </div>
-                  <div className="rounded-xl border-l-2 border-l-red-400 bg-red-500/5 p-3 opacity-50">
+                  <div className="rounded-xl border-l-2 border-l-red-400 bg-muted p-3 opacity-50">
                     <div className="mb-1 flex items-center gap-2">
                       <span className="text-[10px] font-semibold text-red-500">FILTERED</span>
                     </div>
@@ -490,22 +442,22 @@ export default function LandingPage() {
                       &quot;Just bought a brand X phone case, love the color!&quot;
                     </p>
                   </div>
-                  <div className="rounded-xl border-l-2 border-l-red-400 bg-red-500/5 p-3 opacity-50">
+                  <div className="rounded-xl border-l-2 border-l-red-400 bg-muted p-3 opacity-50">
                     <div className="mb-1 flex items-center gap-2">
                       <span className="text-[10px] font-semibold text-red-500">FILTERED</span>
                     </div>
                     <p className="text-xs text-muted-foreground line-through">
-                      &quot;RT if you love weekends 🎉 #brand #viral #follow&quot;
+                      &quot;RT if you love weekends #brand #viral #follow&quot;
                     </p>
                   </div>
                 </div>
-              </div>
+              </CardClean>
             </div>
 
             {/* Feature 2: Emotion & Discourse */}
-            <div className="mb-20 grid items-center gap-12 md:grid-cols-2">
+            <div className="mb-24 grid items-center gap-12 md:grid-cols-2">
               <div className="order-2 md:order-1">
-                <div className="rounded-2xl border bg-card p-6">
+                <CardClean>
                   <div className="mb-4 text-xs font-medium text-muted-foreground">Linguistic analysis output</div>
                   <div className="mb-4">
                     <div className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Emotions detected</div>
@@ -537,18 +489,15 @@ export default function LandingPage() {
                     <div className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Discourse markers</div>
                     <div className="flex flex-wrap gap-1.5">
                       {['Calls to action', 'Expert citations', 'Personal anecdotes', 'Statistical claims', 'Moral framing', 'Us vs Them', 'Urgency signals'].map((marker) => (
-                        <span key={marker} className="rounded-full border bg-muted/50 px-2 py-0.5 text-[10px]">{marker}</span>
+                        <span key={marker} className="rounded-full border bg-muted px-2 py-0.5 text-[10px]">{marker}</span>
                       ))}
                     </div>
                   </div>
-                </div>
+                </CardClean>
               </div>
               <div className="order-1 md:order-2">
-                <div className="mb-3 inline-flex items-center gap-2 rounded-full border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground">
-                  <Brain className="h-3 w-3" />
-                  Linguistic Analysis
-                </div>
-                <h3 className="mb-4 text-3xl tracking-tight" style={{ fontFamily: 'var(--font-serif), serif' }}>
+                <SectionLabel className="mb-4">[&nbsp;&nbsp;Linguistic analysis&nbsp;&nbsp;]</SectionLabel>
+                <h3 className="mb-4 text-3xl font-bold tracking-tight">
                   Beyond sentiment.
                   <br />
                   Emotions and discourse.
@@ -562,7 +511,7 @@ export default function LandingPage() {
                 <ul className="space-y-3">
                   {['8 Plutchik emotions + intensity levels', 'Discourse and narrative analysis', 'Rhetorical strategy detection', 'Cross-cultural linguistic awareness'].map((item) => (
                     <li key={item} className="flex items-center gap-2 text-sm">
-                      <Check className="h-4 w-4 text-primary" />
+                      <Check className="h-4 w-4 text-foreground" />
                       {item}
                     </li>
                   ))}
@@ -571,13 +520,10 @@ export default function LandingPage() {
             </div>
 
             {/* Feature 3: Topic Extraction */}
-            <div className="mb-20 grid items-center gap-12 md:grid-cols-2">
+            <div className="mb-24 grid items-center gap-12 md:grid-cols-2">
               <div>
-                <div className="mb-3 inline-flex items-center gap-2 rounded-full border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground">
-                  <Sparkles className="h-3 w-3" />
-                  AI Topic Extraction
-                </div>
-                <h3 className="mb-4 text-3xl tracking-tight" style={{ fontFamily: 'var(--font-serif), serif' }}>
+                <SectionLabel className="mb-4">[&nbsp;&nbsp;Topic extraction&nbsp;&nbsp;]</SectionLabel>
+                <h3 className="mb-4 text-3xl font-bold tracking-tight">
                   Clean topics.
                   <br />
                   Not word clouds.
@@ -591,13 +537,13 @@ export default function LandingPage() {
                 <ul className="space-y-3">
                   {['Hierarchical topics → subtopics → taxonomy', 'AI-refined for quality and coherence', 'Multi-label classification per document', 'Customizable to your domain and terminology'].map((item) => (
                     <li key={item} className="flex items-center gap-2 text-sm">
-                      <Check className="h-4 w-4 text-primary" />
+                      <Check className="h-4 w-4 text-foreground" />
                       {item}
                     </li>
                   ))}
                 </ul>
               </div>
-              <div className="rounded-2xl border bg-card p-6">
+              <CardClean>
                 <div className="mb-4 text-xs font-medium text-muted-foreground">Extracted taxonomy</div>
                 <div className="space-y-3">
                   {[
@@ -606,56 +552,56 @@ export default function LandingPage() {
                     { topic: 'Sustainability', count: 1967, subtopics: ['Packaging', 'Supply Chain', 'Greenwashing'], sentiment: 58 },
                     { topic: 'Pricing', count: 1455, subtopics: ['Value', 'Competitors', 'Discounts'], sentiment: 38 },
                   ].map((topic) => (
-                    <div key={topic.topic} className="rounded-xl border bg-background p-3">
+                    <div key={topic.topic} className="rounded-xl border bg-muted p-3">
                       <div className="mb-2 flex items-center justify-between">
                         <span className="text-xs font-semibold">{topic.topic}</span>
                         <span className="text-[10px] text-muted-foreground">{topic.count.toLocaleString()} mentions</span>
                       </div>
                       <div className="mb-2 flex gap-1.5">
                         {topic.subtopics.map((sub) => (
-                          <span key={sub} className="rounded-md bg-primary/10 px-1.5 py-0.5 text-[9px] font-medium text-primary">{sub}</span>
+                          <span key={sub} className="rounded-md bg-foreground/10 px-1.5 py-0.5 text-[9px] font-medium text-foreground">{sub}</span>
                         ))}
                       </div>
                       <div className="flex items-center gap-2">
-                        <div className="h-1.5 flex-1 rounded-full bg-muted">
-                          <div className="h-full rounded-full bg-primary/60" style={{ width: `${topic.sentiment}%` }} />
+                        <div className="h-1.5 flex-1 rounded-full bg-border">
+                          <div className="h-full rounded-full bg-foreground/40" style={{ width: `${topic.sentiment}%` }} />
                         </div>
                         <span className="text-[9px] text-muted-foreground">{topic.sentiment}% positive</span>
                       </div>
                     </div>
                   ))}
                 </div>
-              </div>
+              </CardClean>
             </div>
 
             {/* Feature 4: Data Sources */}
             <div className="grid items-center gap-12 md:grid-cols-2">
               <div className="order-2 md:order-1">
-                <div className="rounded-2xl border bg-card p-6">
+                <CardClean>
                   <div className="mb-4 text-xs font-medium text-muted-foreground">Data sources</div>
                   <div className="grid grid-cols-2 gap-3">
-                    <div className="flex items-center gap-3 rounded-xl border bg-background p-3">
-                      <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-muted"><XIcon className="h-4 w-4" /></div>
-                      <div><div className="text-[11px] font-medium">X / Twitter</div><div className="text-[9px] text-green-500">Connected</div></div>
+                    <div className="flex items-center gap-3 rounded-xl border bg-muted p-3">
+                      <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white"><XIcon className="h-4 w-4" /></div>
+                      <div><div className="text-[11px] font-medium">X / Twitter</div><div className="text-[9px] text-green-600">Connected</div></div>
                     </div>
-                    <div className="flex items-center gap-3 rounded-xl border bg-background p-3">
-                      <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-muted"><InstagramIcon className="h-4 w-4" /></div>
+                    <div className="flex items-center gap-3 rounded-xl border bg-muted p-3">
+                      <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white"><InstagramIcon className="h-4 w-4" /></div>
                       <div><div className="text-[11px] font-medium">Instagram</div><div className="text-[9px] text-muted-foreground">Soon</div></div>
                     </div>
-                    <div className="flex items-center gap-3 rounded-xl border bg-background p-3">
-                      <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-muted"><TikTokIcon className="h-4 w-4" /></div>
+                    <div className="flex items-center gap-3 rounded-xl border bg-muted p-3">
+                      <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white"><TikTokIcon className="h-4 w-4" /></div>
                       <div><div className="text-[11px] font-medium">TikTok</div><div className="text-[9px] text-muted-foreground">Soon</div></div>
                     </div>
-                    <div className="flex items-center gap-3 rounded-xl border bg-background p-3">
-                      <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-muted"><GoogleNewsIcon className="h-4 w-4" /></div>
+                    <div className="flex items-center gap-3 rounded-xl border bg-muted p-3">
+                      <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white"><GoogleNewsIcon className="h-4 w-4" /></div>
                       <div><div className="text-[11px] font-medium">News &amp; Media</div><div className="text-[9px] text-muted-foreground">Soon</div></div>
                     </div>
-                    <div className="flex items-center gap-3 rounded-xl border bg-background p-3">
-                      <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-muted"><LinkedInIcon className="h-4 w-4" /></div>
+                    <div className="flex items-center gap-3 rounded-xl border bg-muted p-3">
+                      <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white"><LinkedInIcon className="h-4 w-4" /></div>
                       <div><div className="text-[11px] font-medium">LinkedIn</div><div className="text-[9px] text-muted-foreground">Soon</div></div>
                     </div>
-                    <div className="flex items-center gap-3 rounded-xl border bg-background p-3">
-                      <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-muted"><YouTubeIcon className="h-4 w-4" /></div>
+                    <div className="flex items-center gap-3 rounded-xl border bg-muted p-3">
+                      <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white"><YouTubeIcon className="h-4 w-4" /></div>
                       <div><div className="text-[11px] font-medium">YouTube</div><div className="text-[9px] text-muted-foreground">Soon</div></div>
                     </div>
                   </div>
@@ -665,18 +611,15 @@ export default function LandingPage() {
                     <GoogleSearchIcon className="h-3.5 w-3.5" />
                     <span className="text-[10px]">+many more coming</span>
                   </div>
-                  <div className="mt-3 flex items-center gap-2 rounded-xl border border-dashed bg-muted/30 p-3">
+                  <div className="mt-3 flex items-center gap-2 rounded-xl border border-dashed bg-muted p-3">
                     <Upload className="h-4 w-4 text-muted-foreground" />
                     <span className="text-xs text-muted-foreground">Or upload your own data — CSV, Excel, JSON, Parquet</span>
                   </div>
-                </div>
+                </CardClean>
               </div>
               <div className="order-1 md:order-2">
-                <div className="mb-3 inline-flex items-center gap-2 rounded-full border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground">
-                  <Database className="h-3 w-3" />
-                  Flexible Data Sources
-                </div>
-                <h3 className="mb-4 text-3xl tracking-tight" style={{ fontFamily: 'var(--font-serif), serif' }}>
+                <SectionLabel className="mb-4">[&nbsp;&nbsp;Data sources&nbsp;&nbsp;]</SectionLabel>
+                <h3 className="mb-4 text-3xl font-bold tracking-tight">
                   Your data.
                   <br />
                   From everywhere.
@@ -690,7 +633,7 @@ export default function LandingPage() {
                 <ul className="space-y-3">
                   {['Built-in scrapers for all major social platforms', 'Import CSV, Excel, JSON, Parquet up to 50MB', 'URL-based import for external data', 'Combine multiple sources in a single project'].map((item) => (
                     <li key={item} className="flex items-center gap-2 text-sm">
-                      <Check className="h-4 w-4 text-primary" />
+                      <Check className="h-4 w-4 text-foreground" />
                       {item}
                     </li>
                   ))}
@@ -701,48 +644,49 @@ export default function LandingPage() {
         </section>
 
         {/* Reports & Speed */}
-        <section className="border-y bg-muted/30 py-24">
+        <section className="bg-muted py-28">
           <div className="mx-auto max-w-7xl px-6">
             <div className="mx-auto mb-16 max-w-3xl text-center">
-              <h2 className="mb-4 text-4xl tracking-tight md:text-5xl" style={{ fontFamily: 'var(--font-serif), serif' }}>
+              <SectionLabel className="mb-4">[&nbsp;&nbsp;Reports&nbsp;&nbsp;]</SectionLabel>
+              <h2 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
                 Reports that
                 <br />
                 look like yours
               </h2>
-              <p className="text-lg text-muted-foreground">
+              <p className="text-lg leading-relaxed text-muted-foreground">
                 Generate publication-ready reports and visualizations with a prompt. Follow your brand guidelines automatically.
               </p>
             </div>
-            <div className="grid gap-6 md:grid-cols-2">
-              <div className="rounded-2xl border bg-card p-8">
+            <div className="grid gap-8 md:grid-cols-2">
+              <CardClean>
                 <div className="mb-2 flex items-center gap-2">
-                  <MessageSquare className="h-5 w-5 text-primary" />
+                  <MessageSquare className="h-5 w-5 text-foreground" />
                   <h3 className="text-lg font-semibold">Prompt-driven reports</h3>
                 </div>
                 <p className="mb-6 text-sm text-muted-foreground">
                   Describe what you need in natural language. Datoflow generates charts, tables, and narrative summaries matching your brand.
                 </p>
-                <div className="rounded-xl border bg-muted/50 p-4">
-                  <div className="mb-3 rounded-lg border bg-background p-3">
+                <div className="rounded-xl border bg-muted p-4">
+                  <div className="mb-3 rounded-lg border bg-white p-3">
                     <p className="text-xs text-muted-foreground italic">
                       &quot;Create an executive summary with a sentiment timeline, top 5 topics by volume, and key influencer mentions. Use our brand blue (#1a3c6d) and font.&quot;
                     </p>
                   </div>
                   <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                    <Zap className="h-3 w-3 text-primary" />
+                    <Zap className="h-3 w-3 text-foreground" />
                     <span>Generating report with brand guidelines...</span>
                   </div>
                 </div>
-              </div>
-              <div className="rounded-2xl border bg-card p-8">
+              </CardClean>
+              <CardClean>
                 <div className="mb-2 flex items-center gap-2">
-                  <Zap className="h-5 w-5 text-primary" />
+                  <Zap className="h-5 w-5 text-foreground" />
                   <h3 className="text-lg font-semibold">Blazing fast</h3>
                 </div>
                 <p className="mb-6 text-sm text-muted-foreground">
                   From query to insights in minutes, not days. Scrape, enrich, and visualize thousands of posts before your coffee gets cold.
                 </p>
-                <div className="rounded-xl border bg-muted/50 p-4">
+                <div className="rounded-xl border bg-muted p-4">
                   <div className="space-y-3">
                     {[
                       { label: 'Scraping 25K tweets', time: '~2 min' },
@@ -751,69 +695,40 @@ export default function LandingPage() {
                     ].map((step) => (
                       <div key={step.label} className="flex items-center justify-between">
                         <span className="text-xs">{step.label}</span>
-                        <span className="rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-medium text-primary">{step.time}</span>
+                        <span className="rounded-full bg-foreground/10 px-2 py-0.5 text-[10px] font-medium text-foreground">{step.time}</span>
                       </div>
                     ))}
                     <div className="border-t pt-3">
                       <div className="flex items-center justify-between font-medium">
                         <span className="text-xs">Total: query to report</span>
-                        <span className="rounded-full bg-primary px-2 py-0.5 text-[10px] text-primary-foreground">~6 min</span>
+                        <span className="rounded-full bg-foreground px-2 py-0.5 text-[10px] text-white">~6 min</span>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </CardClean>
             </div>
           </div>
         </section>
 
         {/* Pricing */}
-        <section id="pricing" className="py-24">
+        <section id="pricing" className="py-28">
           <div className="mx-auto max-w-7xl px-6">
             <div className="mx-auto mb-16 max-w-3xl text-center">
-              <div className="mb-4 inline-flex items-center gap-2 rounded-full border bg-muted/50 px-4 py-1.5 text-sm text-muted-foreground">
-                <Eye className="h-3.5 w-3.5" />
-                Radically transparent pricing
-              </div>
-              <h2 className="mb-4 text-4xl tracking-tight md:text-5xl" style={{ fontFamily: 'var(--font-serif), serif' }}>
+              <SectionLabel className="mb-4">[&nbsp;&nbsp;Pricing&nbsp;&nbsp;]</SectionLabel>
+              <h2 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
                 You see every cent
                 <br />
                 before you spend it
               </h2>
-              <p className="text-lg text-muted-foreground">
-                No annual contracts. No per-seat licensing. No hidden fees. Buy credits, use them when you need them. Every operation shows its cost upfront — because if you know what you&apos;re paying for, you&apos;ll keep coming back.
+              <p className="text-lg leading-relaxed text-muted-foreground">
+                No annual contracts. No per-seat licensing. No hidden fees. Buy credits, use them when you need them. Every operation shows its cost upfront.
               </p>
             </div>
 
-            <div className="mx-auto mb-12 max-w-2xl rounded-2xl border bg-card p-6">
-              <div className="mb-4 flex items-center gap-2 text-sm font-semibold">
-                <Eye className="h-4 w-4 text-primary" />
-                You always know what you&apos;re paying
-              </div>
-              <div className="space-y-3">
-                {[
-                  { op: 'Scrape 10,000 tweets', cost: '~X credits', detail: 'Cost shown before you run' },
-                  { op: 'AI topic extraction', cost: '~Y credits', detail: 'Per document, visible upfront' },
-                  { op: 'Emotion & discourse analysis', cost: '~Z credits', detail: 'Itemized in your dashboard' },
-                  { op: 'Upload your own CSV', cost: '0 credits', detail: 'Always free' },
-                ].map((row) => (
-                  <div key={row.op} className="flex items-center justify-between rounded-xl border bg-background px-4 py-3">
-                    <div>
-                      <div className="text-sm font-medium">{row.op}</div>
-                      <div className="text-xs text-muted-foreground">{row.detail}</div>
-                    </div>
-                    <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">{row.cost}</span>
-                  </div>
-                ))}
-              </div>
-              <p className="mt-4 text-center text-xs text-muted-foreground">
-                Every operation shows its credit cost before you confirm. No surprises. Ever.
-              </p>
-            </div>
-
-            <div className="mx-auto grid max-w-4xl gap-6 md:grid-cols-3">
-              <div className="rounded-2xl border border-destructive/20 bg-destructive/5 p-6 opacity-60">
-                <div className="mb-4 text-xs font-semibold uppercase tracking-wider text-destructive">Typical competitor</div>
+            <div className="mx-auto grid max-w-4xl gap-8 md:grid-cols-3">
+              <CardClean className="opacity-60">
+                <SectionLabel className="mb-4 text-destructive">[&nbsp;&nbsp;Legacy pricing&nbsp;&nbsp;]</SectionLabel>
                 <div className="mb-2 text-3xl font-bold">$2,500</div>
                 <div className="mb-6 text-sm text-muted-foreground">/month, annual contract</div>
                 <ul className="space-y-2">
@@ -824,34 +739,31 @@ export default function LandingPage() {
                     </li>
                   ))}
                 </ul>
-              </div>
+              </CardClean>
 
-              <div className="relative rounded-2xl border-2 border-primary bg-card p-6 shadow-lg">
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-primary px-3 py-0.5 text-xs font-semibold text-primary-foreground">
+              <div className="relative rounded-2xl border-2 border-foreground bg-card p-8">
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-foreground px-4 py-1 text-xs font-semibold text-white">
                   Recommended
                 </div>
-                <div className="mb-4 text-xs font-semibold uppercase tracking-wider text-primary">Datoflow credits</div>
+                <SectionLabel className="mb-4">[&nbsp;&nbsp;Datoflow&nbsp;&nbsp;]</SectionLabel>
                 <div className="mb-2 text-3xl font-bold">Pay per use</div>
                 <div className="mb-6 text-sm text-muted-foreground">Transparent. No minimums.</div>
                 <ul className="space-y-2">
                   {['See cost before every action', 'Unlimited users & projects', 'All features included', 'Credits never expire', 'Volume discounts available'].map((item) => (
                     <li key={item} className="flex items-center gap-2 text-xs">
-                      <Check className="h-3.5 w-3.5 text-primary" />
+                      <Check className="h-3.5 w-3.5 text-foreground" />
                       {item}
                     </li>
                   ))}
                 </ul>
-                <a
-                  href={`${appUrl}/login`}
-                  className="mt-6 flex w-full items-center justify-center gap-1 rounded-md bg-primary py-2 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
-                >
-                  Start free
+                <BtnPill href={`${appUrl}/login`} className="mt-6 w-full justify-center text-sm">
+                  Start for Free
                   <ArrowRight className="h-3.5 w-3.5" />
-                </a>
+                </BtnPill>
               </div>
 
-              <div className="rounded-2xl border bg-card p-6">
-                <div className="mb-4 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Enterprise</div>
+              <CardClean>
+                <SectionLabel className="mb-4">[&nbsp;&nbsp;Enterprise&nbsp;&nbsp;]</SectionLabel>
                 <div className="mb-2 text-3xl font-bold">Custom</div>
                 <div className="mb-6 text-sm text-muted-foreground">For agencies &amp; large teams</div>
                 <ul className="space-y-2">
@@ -862,19 +774,46 @@ export default function LandingPage() {
                     </li>
                   ))}
                 </ul>
-                <button className="mt-6 w-full rounded-md border py-2 text-sm font-medium transition-colors hover:bg-muted">
+                <BtnPillOutline className="mt-6 w-full justify-center text-sm">
                   Talk to us
-                </button>
-              </div>
+                </BtnPillOutline>
+              </CardClean>
             </div>
+
+            <CardClean className="mx-auto mt-12 max-w-2xl">
+              <div className="mb-4 flex items-center gap-2 text-sm font-semibold">
+                <Eye className="h-4 w-4 text-foreground" />
+                You always know what you&apos;re paying
+              </div>
+              <div className="space-y-3">
+                {[
+                  { op: 'Scrape 10,000 tweets', cost: '~X credits', detail: 'Cost shown before you run' },
+                  { op: 'AI topic extraction', cost: '~Y credits', detail: 'Per document, visible upfront' },
+                  { op: 'Emotion & discourse analysis', cost: '~Z credits', detail: 'Itemized in your dashboard' },
+                  { op: 'Upload your own CSV', cost: '0 credits', detail: 'Always free' },
+                ].map((row) => (
+                  <div key={row.op} className="flex items-center justify-between rounded-xl border bg-muted px-4 py-3">
+                    <div>
+                      <div className="text-sm font-medium">{row.op}</div>
+                      <div className="text-xs text-muted-foreground">{row.detail}</div>
+                    </div>
+                    <span className="rounded-full bg-foreground/10 px-3 py-1 text-xs font-semibold text-foreground">{row.cost}</span>
+                  </div>
+                ))}
+              </div>
+              <p className="mt-4 text-center text-xs text-muted-foreground">
+                Every operation shows its credit cost before you confirm. No surprises. Ever.
+              </p>
+            </CardClean>
           </div>
         </section>
 
         {/* Testimonial */}
-        <section className="border-y bg-muted/30 py-20">
+        <section className="bg-muted py-24">
           <div className="mx-auto max-w-4xl px-6 text-center">
+            <SectionLabel className="mb-8">[&nbsp;&nbsp;Testimonial&nbsp;&nbsp;]</SectionLabel>
             <blockquote>
-              <p className="mb-6 text-2xl leading-relaxed tracking-tight md:text-3xl" style={{ fontFamily: 'var(--font-serif), serif' }}>
+              <p className="mb-6 text-2xl font-medium italic leading-relaxed tracking-tight md:text-3xl">
                 &quot;We replaced a $40K Brandwatch subscription with Datoflow
                 and got deeper insights in a fraction of the time. The
                 emotion analysis alone is worth it.&quot;
@@ -887,10 +826,11 @@ export default function LandingPage() {
         </section>
 
         {/* CTA */}
-        <section className="py-24">
+        <section className="py-28">
           <div className="mx-auto max-w-7xl px-6">
-            <div className="mx-auto max-w-3xl rounded-2xl border bg-card p-12 text-center shadow-sm">
-              <h2 className="mb-4 text-4xl tracking-tight" style={{ fontFamily: 'var(--font-serif), serif' }}>
+            <CardClean className="mx-auto max-w-3xl p-16 text-center">
+              <SectionLabel className="mb-4">[&nbsp;&nbsp;Get started&nbsp;&nbsp;]</SectionLabel>
+              <h2 className="mb-4 text-4xl font-bold tracking-tight">
                 Start getting the data
                 <br />
                 nobody else can
@@ -901,24 +841,21 @@ export default function LandingPage() {
                 No credit card required.
               </p>
               <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-                <a
-                  href={`${appUrl}/login`}
-                  className="inline-flex h-12 items-center gap-2 rounded-md bg-primary px-8 text-base font-medium text-primary-foreground transition-opacity hover:opacity-90"
-                >
-                  Get started free
+                <BtnPill href={`${appUrl}/login`}>
+                  Start for Free
                   <ArrowRight className="h-4 w-4" />
-                </a>
-                <button className="inline-flex h-12 items-center gap-2 rounded-md border px-8 text-base font-medium transition-colors hover:bg-muted">
-                  Book a demo
-                </button>
+                </BtnPill>
+                <BtnPillOutline>
+                  Get a demo
+                </BtnPillOutline>
               </div>
-            </div>
+            </CardClean>
           </div>
         </section>
       </main>
 
       {/* Footer */}
-      <footer className="border-t py-12">
+      <footer className="border-t border-border/50 py-16">
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid gap-8 md:grid-cols-4">
             <div>
@@ -953,7 +890,7 @@ export default function LandingPage() {
             </div>
           </div>
           <div className="mt-8 border-t pt-8 text-center text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Datoflow. All rights reserved.
+            &copy; {new Date().getFullYear()} Datoflow. All rights reserved.
           </div>
         </div>
       </footer>
