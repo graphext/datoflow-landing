@@ -73,9 +73,9 @@ export default function LandingPage() {
             <div className="mx-auto max-w-4xl text-center">
               <SectionLabel className="mb-4 md:mb-6">[&nbsp;&nbsp;Intelligence&nbsp;&nbsp;]</SectionLabel>
               <h1 className="mb-5 text-4xl font-bold leading-[1.15] tracking-tight sm:text-5xl md:mb-6 md:text-7xl md:leading-[1.1]">
-                PR &amp; Market Research Data
+                The Data Tool for PR and
                 <br />
-                nobody else can get you
+                Marketing Intelligence Teams
               </h1>
               <p className="mx-auto mb-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg md:mb-8 md:text-xl">
                 Social media and news intelligence for PR and research teams.
