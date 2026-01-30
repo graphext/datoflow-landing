@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { ArrowRight, Menu, X } from 'lucide-react';
+import { ArrowRight, ChevronRight, Menu, X } from 'lucide-react';
 import { Logo } from '@/components/logo';
 
 const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://app.datoflow.com';
@@ -28,11 +28,19 @@ export function Header() {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           menuOpen
-            ? 'border-b border-border/40 bg-white shadow-sm'
+            ? ''
             : scrolled
-              ? 'border-b border-border/40 bg-white/60 backdrop-blur-xl backdrop-saturate-150 shadow-sm'
-              : 'border-b border-transparent bg-transparent'
+              ? 'border-b border-border/40 backdrop-blur-xl backdrop-saturate-150 shadow-sm'
+              : 'shadow-none'
         }`}
+        style={{
+          background: menuOpen
+            ? '#ffffff'
+            : scrolled
+              ? 'rgba(255, 255, 255, 0.6)'
+              : 'linear-gradient(180deg, #dce6ff, #d8e2ff)',
+          borderBottom: scrolled ? undefined : 'none',
+        }}
       >
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
           <Logo href="/" size="md" />
@@ -73,57 +81,51 @@ export function Header() {
         </div>
       </header>
 
-      {/* Mobile menu overlay */}
-      <div
-        className={`fixed inset-0 z-40 bg-black/20 backdrop-blur-sm transition-opacity duration-300 md:hidden ${
-          menuOpen ? 'opacity-100' : 'pointer-events-none opacity-0'
-        }`}
-        onClick={() => setMenuOpen(false)}
-      />
-
       {/* Mobile menu panel */}
       <div
-        className={`fixed top-16 left-0 right-0 z-40 h-[calc(100dvh-4rem)] bg-white/95 backdrop-blur-xl shadow-xl transition-transform duration-300 ease-out md:hidden ${
-          menuOpen ? 'translate-y-0' : '-translate-y-full pointer-events-none'
+        className={`fixed top-16 left-0 right-0 z-40 h-[calc(100dvh-4rem)] bg-white transition-opacity duration-300 ease-out md:hidden ${
+          menuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
       >
-        <nav className="flex flex-col gap-1 p-6">
+        <nav className="flex flex-col px-6 pt-10">
           <a
             href="#features"
             onClick={() => setMenuOpen(false)}
-            className="rounded-lg px-4 py-3 text-sm font-medium text-foreground transition-colors hover:bg-muted"
+            className="flex items-center justify-between border-b border-border/60 py-5 text-lg font-semibold text-foreground transition-colors hover:text-muted-foreground"
           >
             Features
+            <ChevronRight className="h-5 w-5 text-muted-foreground/60" />
           </a>
           <a
             href="#how-it-works"
             onClick={() => setMenuOpen(false)}
-            className="rounded-lg px-4 py-3 text-sm font-medium text-foreground transition-colors hover:bg-muted"
+            className="flex items-center justify-between border-b border-border/60 py-5 text-lg font-semibold text-foreground transition-colors hover:text-muted-foreground"
           >
             How It Works
+            <ChevronRight className="h-5 w-5 text-muted-foreground/60" />
           </a>
           <a
             href="#pricing"
             onClick={() => setMenuOpen(false)}
-            className="rounded-lg px-4 py-3 text-sm font-medium text-foreground transition-colors hover:bg-muted"
+            className="flex items-center justify-between border-b border-border/60 py-5 text-lg font-semibold text-foreground transition-colors hover:text-muted-foreground"
           >
             Pricing
+            <ChevronRight className="h-5 w-5 text-muted-foreground/60" />
           </a>
-          <div className="my-3 border-t" />
           <a
             href={`${appUrl}/login`}
             onClick={() => setMenuOpen(false)}
-            className="rounded-lg px-4 py-3 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+            className="mt-8 inline-flex items-center justify-center gap-2 rounded-full border border-border bg-transparent px-6 py-3.5 text-base font-medium text-foreground transition-all hover:bg-muted"
           >
             Log in
           </a>
           <a
             href={`${appUrl}/login`}
             onClick={() => setMenuOpen(false)}
-            className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-white transition-all hover:opacity-90"
+            className="mt-3 inline-flex items-center justify-center gap-2 rounded-full bg-foreground px-6 py-3.5 text-base font-medium text-white transition-all hover:opacity-90"
           >
             Start for Free
-            <ArrowRight className="h-3.5 w-3.5" />
+            <ArrowRight className="h-4 w-4" />
           </a>
         </nav>
       </div>

@@ -60,14 +60,14 @@ function CardClean({ children, className = '' }: { children: React.ReactNode; cl
 
 export default function LandingPage() {
   return (
-    <div className="flex min-h-screen flex-col bg-[#f0f4ff]">
+    <div className="flex min-h-screen flex-col bg-[#dce6ff]">
       <Header />
 
       <main className="flex-1">
         {/* Hero Section */}
         <section
           className="relative overflow-hidden"
-          style={{ background: 'linear-gradient(180deg, #f0f4ff 0%, #e8eeff 30%, #dde5f9 60%, #ffffff 100%)' }}
+          style={{ background: 'linear-gradient(180deg, #dce6ff 0%, #d4dfff 20%, #e0e8fa 50%, #ffffff 100%)' }}
         >
           <div className="mx-auto max-w-7xl px-4 pb-20 pt-28 sm:px-6 md:pb-28 md:pt-40">
             <div className="mx-auto max-w-4xl text-center">

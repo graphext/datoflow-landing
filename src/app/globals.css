@@ -41,6 +41,9 @@
   * {
     @apply border-border;
   }
+  html {
+    background: #dce6ff;
+  }
   body {
     @apply text-foreground;
     background: transparent;
