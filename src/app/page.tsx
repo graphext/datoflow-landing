@@ -798,7 +798,8 @@ export default function LandingPage() {
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li><a href="#" className="transition-colors hover:text-foreground">About</a></li>
                 <li><a href="#" className="transition-colors hover:text-foreground">Contact</a></li>
-                <li><a href="#" className="transition-colors hover:text-foreground">Privacy</a></li>
+                <li><a href="/privacy" className="transition-colors hover:text-foreground">Privacy</a></li>
+                <li><a href="/terms" className="transition-colors hover:text-foreground">Terms</a></li>
               </ul>
             </div>
           </div>

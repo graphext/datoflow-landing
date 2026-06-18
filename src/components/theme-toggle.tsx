@@ -26,6 +26,7 @@ export function ThemeToggle({ className = '' }: { className?: string }) {
   useEffect(() => {
     const stored = localStorage.getItem('theme') as Theme | null;
     const initial: Theme = stored === 'light' || stored === 'dark' ? stored : 'system';
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- localStorage is only available after mount.
     setTheme(initial);
     applyTheme(initial);
 
