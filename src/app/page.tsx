@@ -3,7 +3,6 @@ import { Header } from '@/components/header';
 import { GradientBlobs } from '@/components/gradient-blobs';
 import { AnimateOnScroll } from '@/components/animate-on-scroll';
 import {
-  ArrowRight,
   BarChart3,
   Brain,
   Check,
@@ -49,6 +48,17 @@ function BtnSecondary({ href, children, className = '' }: { href?: string; child
   const cls = `inline-flex items-center gap-2 rounded-lg border border-border bg-card backdrop-blur-sm px-6 py-3 text-[15px] font-medium text-foreground transition-all hover:border-primary/30 hover:bg-accent hover:scale-[1.03] active:scale-[0.97] ${className}`;
   if (href) return <a href={href} className={cls}>{children}</a>;
   return <button className={cls}>{children}</button>;
+}
+
+function LaunchingSoon({ className = '' }: { className?: string }) {
+  return (
+    <span
+      aria-disabled="true"
+      className={`inline-flex cursor-default items-center justify-center rounded-lg border border-primary/20 bg-primary/10 px-6 py-3 text-[15px] font-medium text-primary ${className}`}
+    >
+      Launching Soon
+    </span>
+  );
 }
 
 function CardClean({ children, className = '' }: { children: React.ReactNode; className?: string }) {
@@ -106,10 +116,7 @@ export default function LandingPage() {
                   <BtnPrimary href={`${appUrl}/login`}>
                     Book an intro call
                   </BtnPrimary>
-                  <BtnSecondary href={`${appUrl}/login`}>
-                    Start for Free
-                    <ArrowRight className="h-4 w-4" />
-                  </BtnSecondary>
+                  <LaunchingSoon />
                 </div>
               </AnimateOnScroll>
             </div>
@@ -683,9 +690,7 @@ export default function LandingPage() {
                       <li key={item} className="flex items-center gap-2 text-xs"><Check className="h-3.5 w-3.5 text-primary" />{item}</li>
                     ))}
                   </ul>
-                  <BtnPrimary href={`${appUrl}/login`} className="mt-6 w-full justify-center text-sm">
-                    Start for Free <ArrowRight className="h-3.5 w-3.5" />
-                  </BtnPrimary>
+                  <LaunchingSoon className="mt-6 w-full text-sm" />
                 </div>
               </AnimateOnScroll>
 
@@ -760,7 +765,7 @@ export default function LandingPage() {
                   No credit card required.
                 </p>
                 <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-                  <BtnPrimary href={`${appUrl}/login`}>Start for Free <ArrowRight className="h-4 w-4" /></BtnPrimary>
+                  <LaunchingSoon />
                   <BtnSecondary>Get a demo</BtnSecondary>
                 </div>
               </CardClean>

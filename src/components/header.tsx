@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { ArrowRight, ChevronRight, Menu, X } from 'lucide-react';
+import { ChevronRight, Menu, X } from 'lucide-react';
 import { Logo } from '@/components/logo';
 import { ThemeToggle } from '@/components/theme-toggle';
 
@@ -84,17 +84,14 @@ export function Header() {
               >
                 Log in
               </a>
-              <a
-                href={`${appUrl}/login`}
-                className={`inline-flex items-center gap-2 rounded-lg bg-primary font-medium text-white transition-all hover:scale-[1.03] hover:shadow-lg active:scale-[0.97] ${
+              <span
+                aria-disabled="true"
+                className={`inline-flex cursor-default items-center rounded-lg border border-primary/20 bg-primary/10 font-medium text-primary ${
                   scrolled ? 'px-3.5 py-1.5 text-[13px]' : 'px-5 py-2 text-sm'
                 }`}
-                style={{
-                  boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.15), 0 1px 3px rgba(40,77,205,0.4)',
-                }}
               >
-                Sign Up
-              </a>
+                Launching Soon
+              </span>
             </div>
 
             {/* Mobile */}
@@ -138,12 +135,12 @@ export function Header() {
             className="mt-8 inline-flex items-center justify-center gap-2 rounded-lg border border-border bg-transparent px-6 py-3.5 text-base font-medium text-foreground transition-all hover:bg-accent">
             Log in
           </a>
-          <a href={`${appUrl}/login`} onClick={() => setMenuOpen(false)}
-            className="mt-3 inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3.5 text-base font-medium text-white transition-all hover:opacity-90"
-            style={{ boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.15), 0 1px 3px rgba(40,77,205,0.4)' }}>
-            Sign Up
-            <ArrowRight className="h-4 w-4" />
-          </a>
+          <span
+            aria-disabled="true"
+            className="mt-3 inline-flex cursor-default items-center justify-center rounded-lg border border-primary/20 bg-primary/10 px-6 py-3.5 text-base font-medium text-primary"
+          >
+            Launching Soon
+          </span>
         </nav>
       </div>
     </>
