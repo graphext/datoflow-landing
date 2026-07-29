@@ -25,7 +25,9 @@ import {
   FacebookIcon,
 } from '@/components/platform-icons';
 
-const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://app.datoflow.com';
+const appUrl = (process.env.NEXT_PUBLIC_APP_URL || 'https://app.datoflow.com')
+  .trim()
+  .replace(/\/+$/, '');
 
 function SectionLabel({ children, className = '' }: { children: React.ReactNode; className?: string }) {
   return (

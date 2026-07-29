@@ -5,7 +5,9 @@ import { ChevronRight, Menu, X } from 'lucide-react';
 import { Logo } from '@/components/logo';
 import { ThemeToggle } from '@/components/theme-toggle';
 
-const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://app.datoflow.com';
+const appUrl = (process.env.NEXT_PUBLIC_APP_URL || 'https://app.datoflow.com')
+  .trim()
+  .replace(/\/+$/, '');
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
